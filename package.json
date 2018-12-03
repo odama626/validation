@@ -4,6 +4,7 @@
   "description": "simple react validation library",
   "main": "lib/validateme.js",
   "types": "lib/index.d.ts",
+  "repository": "github:omarzion/validateme.git",
   "directories": {
     "lib": "lib"
   },

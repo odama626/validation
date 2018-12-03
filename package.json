@@ -1,10 +1,10 @@
 {
-  "name": "@omarzion/validateme",
+  "name": "@omarzion/validation",
   "version": "1.0.0",
   "description": "simple react validation library",
-  "main": "lib/validateme.js",
+  "main": "lib/validation.js",
   "types": "lib/index.d.ts",
-  "repository": "github:omarzion/validateme.git",
+  "repository": "github:omarzion/validation.git",
   "directories": {
     "lib": "lib"
   },

@@ -1,5 +1,5 @@
 {
-  "name": "validateme",
+  "name": "@omarzion/validateme",
   "version": "1.0.0",
   "description": "simple react validation library",
   "main": "lib/validateme.js",

@@ -1,4 +1,4 @@
-# Validateme
+# @omarzion/validation
 
 A simple validation library that uses React's context library.
 
@@ -13,13 +13,13 @@ inspired by [Flutter](https://flutter.io)
 
 ## To install
 ```cli
-npm install validateme
+npm install @omarzion/validation
 ```
 
 ## A simple use case
 Use the SimpleWrapper, and it handle a lot for you, and you can write less code. It mostly only works on simple html elements though
 ```js
-import { Controller, Form, SimpleWrapper } from 'validateme';
+import { Controller, Form, SimpleWrapper } from '@omarzion/validation';
 
 const controller = new Controller();
 
@@ -51,7 +51,7 @@ export default () => (
 ## More advanced use cases
 Use the Wrapper component, it expects children to be a function and gives you full control of the interconnect
 ```js
-import { Controller, Form, Wrapper } from 'validateme';
+import { Controller, Form, Wrapper } from '@omarzion/validation';
 
 const controller = new Controller();
 
@@ -77,7 +77,7 @@ export default () => (
 ## Shorthand
 Validation is now easy, but there is so much typing.  There are a couple of helper functions that make things a little less verbose
 ```js
-import { Controller, Form, SimpleWrapper, Wrap } from 'validateme';
+import { Controller, Form, SimpleWrapper, Wrap } from '@omarzion/validation';
 
 const controller = new Controller();
 const V = Wrap(controller); // <V> is now the same as <Wrapper controller={controller} />
@@ -124,7 +124,7 @@ if (controller.validate()) {
 ## Controller
 The controller is the glue of the entire validation library.  Every "Form" or group of inputs that are part of the same data entry group should use the same controller.  After instantiating it you just need to pass it to the form and each input within that form.
 ```js
-import { Controller } from 'validateme';
+import { Controller } from '@omarzion/validation';
 
 const controller = new Controller();
 
@@ -144,7 +144,7 @@ if (controller.validate()) {
 ## Form
 The form is the Provider, it should contain all of the validated elements.
 ```js
-import { Form, Controller } from 'validateme';
+import { Form, Controller } from '@omarzion/validation';
 
 
 const controller = new Controller();
@@ -170,7 +170,7 @@ data-name is used for tracking the element name and data-error is used for track
 
 ```js
 // myForm.js
-import { Form, Controller, SimpleWrapper } from 'validateme';
+import { Form, Controller, SimpleWrapper } from '@omarzion/validation';
 
 
 const controller = new Controller();
@@ -187,7 +187,7 @@ export default () => (
 ## Wrapper
 A more generic wrapper, designed in such a way that it should be able to handle any kind of validation you can throw at it
 ```js
-import { Form, Controller, Wrapper } from 'validateme';
+import { Form, Controller, Wrapper } from '@omarzion/validation';
 
 
 const controller = new Controller();

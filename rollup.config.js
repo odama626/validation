@@ -7,9 +7,9 @@ import { uglify } from 'rollup-plugin-uglify';
 export default {
   input: 'src/index.tsx',
   output: {
-    file: 'lib/validateme.js',
+    file: 'lib/validation.js',
     format: 'cjs',
-    name: 'validateme',
+    name: 'validation',
     sourceMap: 'true'
   },
   external: ['react', 'react-dom'],

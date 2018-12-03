@@ -1,0 +1,32 @@
+{
+  "name": "validateme",
+  "version": "1.0.0",
+  "description": "simple react validation library",
+  "main": "lib/validateme.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/rollup -c"
+  },
+  "author": "Adam Sparks",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^16.7.11",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "rollup": "^0.67.3",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-typescript2": "^0.18.0",
+    "rollup-plugin-uglify": "^6.0.0",
+    "typescript": "^3.3.0-dev.20181201"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}

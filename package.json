@@ -5,6 +5,8 @@
   "main": "lib/validation.js",
   "types": "lib/index.d.ts",
   "repository": "github:omarzion/validation.git",
+  "author": "Adam Sparks",
+  "license": "MIT",
   "directories": {
     "lib": "lib"
   },
@@ -12,8 +14,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/rollup -c"
   },
-  "author": "Adam Sparks",
-  "license": "MIT",
+  "keywords": [
+    "react",
+    "validation"
+  ],
   "devDependencies": {
     "@types/react": "^16.7.11",
     "react": "^16.6.3",

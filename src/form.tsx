@@ -16,7 +16,6 @@ export default class Form extends React.Component<Core.FormProps, any> implement
     const { values, errors } = this.state;
     let name = directName || event.target.dataset.name;
     let value = directName ? event : maybe('target.value', event);
-    console.log(event, event.type);
     let nextState = {
       values: { ...values, [name]: value }
     }

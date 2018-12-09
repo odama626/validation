@@ -39,8 +39,7 @@ export default class Controller implements Core.FormController {
     component.Context = this.Context;
   }
 
-  validateByName(name) {
-    let values = this.provider.state.values;
+  validateByName(name, values) {
     let component = this.components[name];
     return component.validate ? component.validate(values[name], values) : true;
   }

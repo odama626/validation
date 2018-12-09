@@ -21,7 +21,7 @@ export default class Controller implements Core.FormController {
     constructor();
     attachContext(provider: any): void;
     attachComponent(name: any, component: any): void;
-    validateByName(name: any): boolean;
+    validateByName(name: any, values: any): boolean;
     /**
      * ```
      * `

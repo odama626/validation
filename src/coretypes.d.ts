@@ -11,7 +11,7 @@ declare namespace Core {
     attachComponent: (name, conmponent) => void;
     attachContext: (conmponent) => void;
     validate: () => boolean;
-    validateByName: (name: string) => boolean;
+    validateByName: (name: string, values: { [name: string]: any }) => boolean;
   }
 
   interface FormField {

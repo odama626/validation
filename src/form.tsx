@@ -17,9 +17,9 @@ export default class Form extends React.Component<Core.FormProps, any> implement
     let name = directName || event.target.dataset.name;
     let value = directName ? event : maybe('target.value', event);
     let nextState = {
-      values: { ...values, [name]: value }
+      values: { ...values, [name]: value },
     }
-    if (errors[name] && !this.props.controller.validateByName(name)) {
+    if (errors[name] && this.props.controller.validateByName(name)) {
       nextState['errors'] = { ...errors, [name]: false}
     }
     this.setState(nextState);

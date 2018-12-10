@@ -29,6 +29,7 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
 
   componentWillMount() {
     const { controller } = this.props;
+    this.validate = this.validate.bind(this);
     controller && controller.attachComponent(this.props.name, this);
   }
 
@@ -40,7 +41,8 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
         {state => {
           const { values, errors, onChange } = state;
           let value = controller ? values[name] || '' : undefined;
-          return children({ value, name, error: errors[name], onChange: e => onChange(e, name)})
+          let validate = errors[name];
+          return children({ value, name, error: validate ? !validate.valid : false, message: validate && validate.message, onChange: e => onChange(e, name)})
         }}
       </Context.Consumer>
     )

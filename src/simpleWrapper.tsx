@@ -30,6 +30,7 @@ export default class SimpleWrapper extends React.Component<Core.SimpleWrapperPro
 
   componentWillMount() {
     const { controller } = this.props;
+    this.validate = this.validate.bind(this);
     controller && controller.attachComponent(this.props.name, this);
   }
 
@@ -41,7 +42,9 @@ export default class SimpleWrapper extends React.Component<Core.SimpleWrapperPro
         {state => {
           const { values, errors, ...rest} = state;
           let value = controller ? values[name] || '' : undefined;
-          return React.cloneElement(children,{ name, value: value, ['data-name']: name, ['data-error']: errors[name] || undefined, ...rest });
+          let validate = errors[name];
+          let error = validate ? (validate.valid ? undefined : true ) : undefined
+          return React.cloneElement(children,{ name, value: value, ['data-name']: name, ['data-error']: error, ['data-message']: validate && validate.message, ...rest });
         }}
       </Context.Consumer>
     )

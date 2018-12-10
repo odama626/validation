@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-
+declare var Promise;
 
 
 /**
@@ -15,6 +15,16 @@ import { createContext } from 'react';
  *```
  *
  */
+
+async function testValidity(test, name, values) {
+  let result = await (test ? Promise.resolve(test(values[name], values)) : Promise.resolve(true));
+
+  if (result.message || result.valid) {
+    return result;
+  }
+  return { valid: result };
+}
+
 export default class Controller implements Core.FormController {
   components: { [name: string]: Core.FormField };
   Context: React.Context<Core.FormProviderContext>;
@@ -39,10 +49,24 @@ export default class Controller implements Core.FormController {
     component.Context = this.Context;
   }
 
-  validateByName(name, values) {
+  async validateByName(name, values) {
     let component = this.components[name];
-    return component.validate ? component.validate(values[name], values) : true;
+    return testValidity(component.validate, name, values);
+    //return component.validate ? await Promise.resolve(component.validate(values[name], values)) : Promise.resolve(true);
   }
+
+  // set(name, opts = {}) {
+
+  //   return true;
+  // }
+
+  // get(name: string) {
+  //   const state = this.provider.state;
+  //   return {
+  //     value: state.values[name],
+  //     error: state.errors[name]
+  //   }
+  // }
 
   /**
    * ```
@@ -66,18 +90,29 @@ export default class Controller implements Core.FormController {
    * }
    * ```
    */
-  validate(): boolean {
+  async validate() {
     if (!this.provider || !this.provider.state) {
       throw new Error('FormController requires a provider, did you forget to set controller on your Form?');
     }
     const { values } = this.provider.state;
     let invalid: any = {};
-    let valid = Object.keys(this.components).reduce((valid, key) => {
-      let c = this.components[key];
-      let v = c.validate ? c.validate(values[key], values) : true;
-      invalid[key] = !v;
-      return valid && v;
-    }, true);
+    // let valid = Object.keys(this.components).reduce((valid, key) => {
+    //   let c = this.components[key];
+    //   let v = c.validate ? c.validate(values[key], values) : true;
+    //   invalid[key] = !v;
+    //   return valid && v;
+    // }, true);
+
+    let valids = await Promise.all(Object.keys(this.components).map(async key => {
+      // let c = this.components[key];
+      // let v = await (c.validate ? Promise.resolve(c.validate(values[key], values)) : Promise.resolve(true));
+      let v = await testValidity(this.components[key].validate, key, values);
+      invalid[key] = v;
+      return v;
+    }));
+
+    let valid = valids.reduce((valid, next) => valid && next.valid, true);
+    
 
     if (typeof valid === 'undefined')
       return true;

@@ -12,15 +12,16 @@ export default class Form extends React.Component<Core.FormProps, any> implement
     this.props.controller.attachContext(this);
   }
 
-  onChange(event, directName?: string) {
+  async onChange(event, directName?: string) {
     const { values, errors } = this.state;
     let name = directName || event.target.dataset.name;
     let value = directName ? event : maybe('target.value', event);
     let nextState = {
       values: { ...values, [name]: value },
     }
-    if (errors[name] && this.props.controller.validateByName(name, nextState.values)) {
-      nextState['errors'] = { ...errors, [name]: false}
+    if (errors[name] && !errors[name].valid) {
+      let result = await this.props.controller.validateByName(name, nextState.values);
+      nextState['errors'] = { ...errors, [name]: result };
     }
     this.setState(nextState);
   }

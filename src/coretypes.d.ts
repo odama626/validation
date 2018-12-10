@@ -1,6 +1,7 @@
 declare namespace Core {
 
   type ValidateFunc = (value: any, values: any) => boolean;
+  type ValidationResult = Promise<{ valid: boolean; message?: any }>
   interface WrapperChildProps { 
     value: any;
     name: string;
@@ -10,8 +11,9 @@ declare namespace Core {
   interface FormController {
     attachComponent: (name, conmponent) => void;
     attachContext: (conmponent) => void;
-    validate: () => boolean;
-    validateByName: (name: string, values: { [name: string]: any }) => boolean;
+    validate: () => ValidationResult;
+    validateByName: (name: string, values: { [name: string]: any }) => ValidationResult;
+    // set: (name: string, values?: { valid?: boolean, message?: any, value?: any}) => boolean;
   }
 
   interface FormField {
@@ -50,7 +52,7 @@ declare namespace Core {
   }
 
   export interface WrapperProps extends FormFieldProps<null> {
-    children: (props: WrapperChildProps & { error: boolean}) => React.ReactNode;
+    children: (props: WrapperChildProps & { error: boolean, message?: any}) => React.ReactNode;
   }
 
   interface FormProps extends React.HTMLProps<HTMLDivElement> {

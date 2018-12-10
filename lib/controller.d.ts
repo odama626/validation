@@ -1,17 +1,4 @@
 /// <reference types="react" />
-/**
- * _@core / Form / Controller_
- *
- * ### Control FormFields in a Form and handle validation
- * ```
- * `
- * Pass an instance of ${ Controller } into a ${ Form } and
- * it's ${ children FormFields } to manage input ${ updates }
- * and ${ validation } checks
- * `
- *```
- *
- */
 export default class Controller implements Core.FormController {
     components: {
         [name: string]: Core.FormField;
@@ -21,7 +8,7 @@ export default class Controller implements Core.FormController {
     constructor();
     attachContext(provider: any): void;
     attachComponent(name: any, component: any): void;
-    validateByName(name: any, values: any): boolean;
+    validateByName(name: any, values: any): Promise<any>;
     /**
      * ```
      * `
@@ -44,7 +31,7 @@ export default class Controller implements Core.FormController {
      * }
      * ```
      */
-    validate(): boolean;
+    validate(): Promise<any>;
     /**
      * ```
      * `

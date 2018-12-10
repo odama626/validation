@@ -11,6 +11,43 @@ Requires React ^16.4.2
 inspired by [Flutter](https://flutter.io)
 
 
+## 2.0 updates
+* __NEW FEATURE:__ The Library has been rewritten to work with async await
+* __BREAKING CHANGE:__ `controller.validate` now returns a promise
+```js
+onClick={async () => {
+  if (await controller.validate()) {
+    controller.getValues();
+  }
+}}
+```
+* __NEW FEATURE:__ You can now optionally return a message when your validate function fails and it will be passed to your wrapped element
+```js
+const validateWithMessage = async (value = '') => {
+  if (value.length < 1) {
+    return { valid: false, message: 'This field is required' };
+  }
+  if (value.toLowerCase() === value || value.toUpperCase() === value) {
+    return { valid: false, message: 'This field needs a mixture of uppercase and lowercase letters' };
+  }
+
+  // things are valid
+  return true;
+}
+
+
+// you can still simply return true or false
+// if you don't want a message
+const validateWithoutMessage = async (value = '') => (
+  value.length > 0
+  && value.toLowerCase() !== value
+  && value.toUpperCase() !== value;
+);
+```
+* __BREAKING CHANGE:__ if you only use `Wrapper` `SimpleWrapper` and `Wrap` they are backwards compatible and you can ignore this. However, if you implemented the undocumented Core.FormFieldProps or Core.FormField types in your own code you will have to rewrite your integrations and it is suggested to only use Wrapper or Simple wrapper in your components in the future.
+
+
+
 ## To install
 ```cli
 npm install @omarzion/validation

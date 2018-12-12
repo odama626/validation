@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { any } from 'prop-types';
-
 
 /**
  * _@core / Form / Wrapper_

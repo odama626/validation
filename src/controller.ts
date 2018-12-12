@@ -2,6 +2,7 @@ import { createContext } from 'react';
 declare var Promise;
 
 
+
 /**
  * _@core / Form / Controller_
  *
@@ -55,18 +56,23 @@ export default class Controller implements Core.FormController {
     //return component.validate ? await Promise.resolve(component.validate(values[name], values)) : Promise.resolve(true);
   }
 
-  // set(name, opts = {}) {
+  set(name, opts: any) {
+    if (!this.provider || !this.provider.state) throw new Error('FormController requires a provider');
+    let state = {...this.provider.state};
+    state.values[name] = 'value' in opts ? opts.value : state.values[name];
+    const { value, ...rest } = opts;
+    state.errors[name] = 'valid' in rest || 'message' in rest ? rest : state.errors[name];
+    this.provider.setState(state);
+  }
 
-  //   return true;
-  // }
-
-  // get(name: string) {
-  //   const state = this.provider.state;
-  //   return {
-  //     value: state.values[name],
-  //     error: state.errors[name]
-  //   }
-  // }
+  get(name: string) {
+    const state = this.provider.state;
+    return {
+      value: state.values[name],
+      valid: state.errors[name] ? state.errors[name].valid : true,
+      message: state.errors[name] ? state.errors[name].message : undefined
+    }
+  }
 
   /**
    * ```

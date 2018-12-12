@@ -13,7 +13,8 @@ declare namespace Core {
     attachContext: (conmponent) => void;
     validate: () => ValidationResult;
     validateByName: (name: string, values: { [name: string]: any }) => ValidationResult;
-    // set: (name: string, values?: { valid?: boolean, message?: any, value?: any}) => boolean;
+    set: (name: string, opts: { value?: any, message?: any, valid?: boolean}) => void;
+    get: (name: string) => { value: any, valid: boolean, message?: any };
   }
 
   interface FormField {
@@ -47,11 +48,11 @@ declare namespace Core {
     name: string;
   }
 
-  export interface SimpleWrapperProps extends FormFieldProps<null> {
+  interface SimpleWrapperProps extends FormFieldProps<null> {
     children: React.ReactElement<WrapperChildProps>;
   }
 
-  export interface WrapperProps extends FormFieldProps<null> {
+  interface WrapperProps extends FormFieldProps<null> {
     children: (props: WrapperChildProps & { error: boolean, message?: any}) => React.ReactNode;
   }
 
@@ -60,14 +61,14 @@ declare namespace Core {
   }
 
   // Themes
-  interface Theme {
-    primary: string;
-    secondary: string;
-    success: string;
-    info: string;
-    warning: string;
-    danger: string;
-    light: string;
-    dark: string;
-  }
+  // interface Theme {
+  //   primary: string;
+  //   secondary: string;
+  //   success: string;
+  //   info: string;
+  //   warning: string;
+  //   danger: string;
+  //   light: string;
+  //   dark: string;
+  // }
 }

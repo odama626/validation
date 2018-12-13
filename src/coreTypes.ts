@@ -1,14 +1,14 @@
-declare namespace Core {
+// declare namespace Core {
 
   type ValidateFunc = (value: any, values: any) => boolean;
   type ValidationResult = Promise<{ valid: boolean; message?: any }>
-  interface WrapperChildProps { 
+  export interface WrapperChildProps { 
     value: any;
     name: string;
     onChange: (event) => any;
   }
 
-  interface FormController {
+  export interface FormController {
     attachComponent: (name, conmponent) => void;
     attachContext: (conmponent) => void;
     validate: () => ValidationResult;
@@ -17,12 +17,12 @@ declare namespace Core {
     get: (name: string) => { value: any, valid: boolean, message?: any };
   }
 
-  interface FormField {
+  export interface FormField {
     validate?: ValidateFunc
     Context: React.Context<FormProviderContext>;
   }
 
-  interface FormProviderContext {
+  export interface FormProviderContext {
     errors: {
       [name: string]: boolean;
     };
@@ -33,7 +33,7 @@ declare namespace Core {
   }
 
 
-  interface Provider extends React.Component<any, any> {
+  export interface Provider extends React.Component<any, any> {
     onChange: (event: React.SyntheticEvent<any>) => void;
     update: (errorFields: { [name: string]: any}) => void;
     context: React.Context<FormProviderContext>;
@@ -42,26 +42,26 @@ declare namespace Core {
 
   // React Component Prop Types
 
-  interface FormFieldProps<T> extends React.HTMLProps<T> {
+  export interface FormFieldProps<T> extends React.HTMLProps<T> {
     validate?: ValidateFunc
     controller?: FormController;
     name: string;
   }
 
-  interface SimpleWrapperProps extends FormFieldProps<null> {
+  export interface SimpleWrapperProps extends FormFieldProps<null> {
     children: React.ReactElement<WrapperChildProps>;
   }
 
-  interface WrapperProps extends FormFieldProps<null> {
+  export interface WrapperProps extends FormFieldProps<null> {
     children: (props: WrapperChildProps & { error: boolean, message?: any}) => React.ReactNode;
   }
 
-  interface FormProps extends React.HTMLProps<HTMLDivElement> {
+  export interface FormProps extends React.HTMLProps<HTMLDivElement> {
     controller: FormController;
   }
 
   // Themes
-  // interface Theme {
+  // export interface Theme {
   //   primary: string;
   //   secondary: string;
   //   success: string;
@@ -71,4 +71,4 @@ declare namespace Core {
   //   light: string;
   //   dark: string;
   // }
-}
+// }

@@ -1,3 +1,4 @@
+import * as Core from './coreTypes';
 import { createContext } from 'react';
 declare var Promise;
 

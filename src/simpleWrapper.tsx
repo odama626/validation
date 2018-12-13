@@ -1,3 +1,4 @@
+import * as Core from './coreTypes';
 import * as React from 'react';
 
 

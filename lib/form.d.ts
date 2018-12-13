@@ -1,3 +1,4 @@
+import * as Core from './coreTypes';
 import * as React from 'react';
 export default class Form extends React.Component<Core.FormProps, any> implements Core.Provider {
     Context: any;

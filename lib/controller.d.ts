@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import * as Core from './coreTypes';
 export default class Controller implements Core.FormController {
     components: {
         [name: string]: Core.FormField;

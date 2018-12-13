@@ -21,7 +21,7 @@ import * as React from 'react';
  */
 export default class SimpleWrapper extends React.Component<Core.SimpleWrapperProps> implements Core.FormField {
     Context: React.Context<any>;
-    validate(value: string, values: any): boolean;
+    validate(value: string, values: any): boolean | Promise<boolean>;
     componentWillMount(): void;
     render(): JSX.Element;
 }

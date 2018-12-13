@@ -45,7 +45,7 @@ export default class SimpleWrapper extends React.Component<Core.SimpleWrapperPro
           let value = controller ? values[name] || '' : undefined;
           let validate = errors[name];
           let error = validate ? (validate.valid ? undefined : true ) : undefined
-          return React.cloneElement(children,{ name, value: value, ['data-name']: name, ['data-error']: error, ['data-message']: validate && validate.message, ...rest });
+          return React.cloneElement(children,{ value: value, ['data-name']: name, ['data-error']: error, ['data-message']: validate && validate.message, ...rest });
         }}
       </Context.Consumer>
     )

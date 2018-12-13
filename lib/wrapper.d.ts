@@ -19,10 +19,8 @@ import * as React from 'react';
  */
 export default class Wrapper extends React.Component<Core.WrapperProps> implements Core.FormField {
     Context: React.Context<any>;
-    validate(value: string, values: any): boolean;
+    validate(value: string, values: any): boolean | Core.Validation | Promise<boolean | Core.Validation>;
     componentWillMount(): void;
     render(): JSX.Element;
 }
-export declare const Wrap: (controller: Core.FormController, W?: any) => (props: Core.WrapperProps & {
-    controller?: any;
-}) => JSX.Element;
+export declare const Wrap: (controller: Core.FormController, W?: any) => (props: any) => JSX.Element;

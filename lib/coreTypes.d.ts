@@ -1,12 +1,13 @@
 /// <reference types="react" />
-declare type ValidateFunc = (value: any, values: any) => boolean;
-declare type ValidationResult = Promise<{
+export interface Validation {
     valid: boolean;
     message?: any;
-}>;
+}
+declare type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
+declare type ValidationResult = Promise<Validation>;
+export declare type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.Component<infer TProps, any> ? TProps : TComponentOrTProps;
 export interface WrapperChildProps {
     value: any;
-    name: string;
     onChange: (event: any) => any;
 }
 export interface FormController {
@@ -53,13 +54,14 @@ export interface FormFieldProps<T> extends React.HTMLProps<T> {
     name: string;
 }
 export interface SimpleWrapperProps extends FormFieldProps<null> {
-    children: React.ReactElement<WrapperChildProps>;
+    children: React.ReactElement<any>;
 }
 export interface WrapperProps extends FormFieldProps<null> {
-    children: (props: WrapperChildProps & {
+    children?: (props: WrapperChildProps & {
+        name?: string;
         error: boolean;
         message?: any;
-    }) => React.ReactNode;
+    }) => React.ReactElement<any>;
 }
 export interface FormProps extends React.HTMLProps<HTMLDivElement> {
     controller: FormController;

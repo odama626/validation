@@ -30,11 +30,18 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
     const { controller } = this.props;
     this.validate = this.validate.bind(this);
     controller && controller.attachComponent(this.props.name, this);
+
+    if (!this.props.children || typeof this.props.children !== 'function') {
+      throw Error('children of Wrapper must be a function');
+    }
   }
 
   render() {
     const {name, controller, children} = this.props;
     const { Context } = this;
+    if (!children) {
+      throw Error('children of Wrapper must be a function');
+    }
     return (
       <Context.Consumer>
         {state => {
@@ -48,6 +55,6 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
   }
 }
 
-export const Wrap = (controller: Core.FormController, W: any = Wrapper) => (props: Core.WrapperProps & { controller?: any}) => (
+export const Wrap = (controller: Core.FormController, W: any = Wrapper) => (props: typeof W['props'] & { controller?: any}) => (
   <W {...props} controller={controller} />
 )

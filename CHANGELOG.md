@@ -1,4 +1,4 @@
-# 2.0.2
+# 2.0.2, 2.0.3
 * __BUG FIX:__ Typescript types should now be properly exported
 
 # 2.0.1

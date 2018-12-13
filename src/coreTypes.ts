@@ -1,10 +1,16 @@
 // declare namespace Core {
 
-  type ValidateFunc = (value: any, values: any) => boolean;
-  type ValidationResult = Promise<{ valid: boolean; message?: any }>
+
+  export interface Validation {
+    valid: boolean;
+    message?: any;
+  }
+  type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
+  type ValidationResult = Promise<Validation>
+  export type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.Component<infer TProps, any> ? TProps : TComponentOrTProps;
   export interface WrapperChildProps { 
     value: any;
-    name: string;
+    // name: string;
     onChange: (event) => any;
   }
 
@@ -49,11 +55,12 @@
   }
 
   export interface SimpleWrapperProps extends FormFieldProps<null> {
-    children: React.ReactElement<WrapperChildProps>;
+    // children: React.ReactElement<WrapperChildProps>;
+    children: React.ReactElement<any>;
   }
 
   export interface WrapperProps extends FormFieldProps<null> {
-    children: (props: WrapperChildProps & { error: boolean, message?: any}) => React.ReactNode;
+    children?: (props: WrapperChildProps & { name?: string, error: boolean, message?: any}) => React.ReactElement<any>;
   }
 
   export interface FormProps extends React.HTMLProps<HTMLDivElement> {

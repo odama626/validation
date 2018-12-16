@@ -1,3 +1,9 @@
+# 2.2.0
+controller now has clear() function that resets form state
+```js
+controller.clear();
+```
+
 # 2.1.0
 withValidation can now be used to wrap your component, it creates the controller, wraps your component in a Form and gives you a controller prop.  the first function call is simply a placeholder now to allow options to be added in a backwards compatible manner.
 

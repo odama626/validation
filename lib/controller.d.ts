@@ -16,6 +16,7 @@ export default class Controller implements Core.FormController {
         valid: any;
         message: any;
     };
+    clear(): void;
     /**
      * ```
      * `

@@ -75,6 +75,10 @@ export default class Controller implements Core.FormController {
     }
   }
 
+  clear() {
+    this.provider.setState({ values: {}, errors: {}});
+  }
+
   /**
    * ```
    * `

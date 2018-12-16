@@ -10,7 +10,6 @@ Requires React ^16.4.2
 
 inspired by [Flutter](https://flutter.io)
 
-
 ## 2.0 updates
 * __NEW FEATURE:__ The Library has been rewritten to work with async await
 * __BREAKING CHANGE:__ `controller.validate` now returns a promise
@@ -46,6 +45,7 @@ const validateWithoutMessage = async (value = '') => (
 ```
 * __BREAKING CHANGE:__ if you only use `Wrapper` `SimpleWrapper` and `Wrap` they are backwards compatible and you can ignore this. However, if you implemented the undocumented Core.FormFieldProps or Core.FormField types in your own code you will have to rewrite your integrations and it is suggested to only use Wrapper or Simple wrapper in your components in the future.
 
+for more info see [changelog](./CHANGELOG.md)
 
 
 ## To install

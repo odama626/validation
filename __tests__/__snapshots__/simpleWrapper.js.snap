@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleWrapper throws error when missing controller prop 1`] = `"SimpleWrapper with name 'undefined' failed to connect to controller.  did you forget to add controller prop?"`;
+
+exports[`SimpleWrapper throws error when missing controller prop 2`] = `"SimpleWrapper with name 'test' failed to connect to controller.  did you forget to add controller prop?"`;

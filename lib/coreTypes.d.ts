@@ -3,9 +3,9 @@ export interface Validation {
     valid: boolean;
     message?: any;
 }
-declare type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
+export declare type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
 declare type ValidationResult = Promise<Validation>;
-export declare type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.Component<infer TProps, any> ? TProps : TComponentOrTProps;
+export declare type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.ComponentType<infer TProps> ? TProps : TComponentOrTProps;
 export interface WrapperChildProps {
     value: any;
     onChange: (event: any) => any;

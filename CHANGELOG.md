@@ -1,3 +1,15 @@
+# 2.1.0
+withValidation can now be used to wrap your component, it creates the controller, wraps your component in a Form and gives you a controller prop.  the first function call is simply a placeholder now to allow options to be added in a backwards compatible manner.
+
+using the current options are alpha and are expected to change.
+just use it like it is below if you don't want things to break later.
+```js
+export default withValidation()(Your Component);
+```
+
+# 2.0.4
+* __BUG FIX:__ Types are now much more specific
+
 # 2.0.2, 2.0.3
 * __BUG FIX:__ Typescript types should now be properly exported
 

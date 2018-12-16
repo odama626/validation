@@ -1,5 +1,7 @@
 import * as Core from './coreTypes';
 import * as React from 'react';
+declare var Promise;
+
 
 export default class Form extends React.Component<Core.FormProps, any> implements Core.Provider {
   Context;
@@ -13,7 +15,7 @@ export default class Form extends React.Component<Core.FormProps, any> implement
     this.props.controller.attachContext(this);
   }
 
-  async onChange(event, directName?: string) {
+  onChange(event, directName?: string) {
     const { values, errors } = this.state;
     let name = directName || event.target.dataset.name;
     let value = directName ? event : maybe('target.value', event);
@@ -21,8 +23,10 @@ export default class Form extends React.Component<Core.FormProps, any> implement
       values: { ...values, [name]: value },
     }
     if (errors[name] && !errors[name].valid) {
-      let result = await this.props.controller.validateByName(name, nextState.values);
-      nextState['errors'] = { ...errors, [name]: result };
+      Promise.resolve(this.props.controller.validateByName(name, nextState.values))
+        .then(result => this.setState(state => ({ errors: { ...state.errors, [name]: result }}) ));
+      // let result = await this.props.controller.validateByName(name, nextState.values);
+      // nextState['errors'] = { ...errors, [name]: result };
     }
     this.setState(nextState);
   }

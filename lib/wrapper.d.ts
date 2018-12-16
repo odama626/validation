@@ -23,4 +23,4 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
     componentWillMount(): void;
     render(): JSX.Element;
 }
-export declare const Wrap: (controller: Core.FormController, W?: any) => (props: any) => JSX.Element;
+export declare const Wrap: (controller: Core.FormController, W?: React.ComponentType<Core.FormFieldProps<null>>, validator?: Core.ValidateFunc | undefined) => (props: Core.FormFieldProps<null>) => JSX.Element;

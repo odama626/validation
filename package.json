@@ -1,6 +1,6 @@
 {
   "name": "@omarzion/validation",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "simple react validation library",
   "main": "lib/validation.js",
   "types": "lib/index.d.ts",
@@ -11,8 +11,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/rollup -c"
+    "build": "./node_modules/.bin/rollup -c && jest",
+    "test": "jest"
   },
   "keywords": [
     "react",
@@ -20,9 +20,14 @@
     "form"
   ],
   "devDependencies": {
-    "@types/react": "^16.7.11",
+    "@types/react": "^16.7.17",
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^23.6.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-test-renderer": "^16.6.3",
     "rollup": "^0.67.3",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-commonjs": "^9.2.0",

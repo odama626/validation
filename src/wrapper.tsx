@@ -55,6 +55,15 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
   }
 }
 
-export const Wrap = (controller: Core.FormController, W: any = Wrapper) => (props: typeof W['props'] & { controller?: any}) => (
-  <W {...props} controller={controller} />
-)
+// export const Wrap = (controller: Core.FormController, W: any = Wrapper) => (
+//   (props: typeof W['props'] & { controller?: any}) => (
+//     <W {...props} controller={controller} />
+//   )
+// )
+
+export const Wrap = (controller: Core.FormController, W: React.ComponentType<Core.FormFieldProps<null>> = Wrapper, validator?: Core.ValidateFunc) => {
+
+  return (props: Exclude<Core.ExtractProps<typeof W>, { controller: Core.FormController}>) => (
+    <W {...{ validate: validator, ...props}} controller={controller} />
+  )
+}

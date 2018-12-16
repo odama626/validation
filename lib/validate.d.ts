@@ -7,3 +7,4 @@ declare const _default: {
     NotEmpty: typeof NotEmpty;
 };
 export default _default;
+export declare function phoneNumber(value: any, values: any): string;

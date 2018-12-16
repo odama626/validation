@@ -30,9 +30,13 @@ export default class SimpleWrapper extends React.Component<Core.SimpleWrapperPro
   }
 
   componentWillMount() {
-    const { controller } = this.props;
+    const { controller, name } = this.props;
     this.validate = this.validate.bind(this);
-    controller && controller.attachComponent(this.props.name, this);
+    if (controller) {
+      controller.attachComponent(this.props.name, this);
+    } else {
+      throw Error(`SimpleWrapper with name '${name}' failed to connect to controller.  did you forget to add controller prop?`);
+    }
   }
 
   render() {

@@ -9,8 +9,7 @@ export {
   Controller,
   Wrapper,
   SimpleWrapper,
-  Wrap
+  Wrap,
 }
 
 export default withValidation;
-

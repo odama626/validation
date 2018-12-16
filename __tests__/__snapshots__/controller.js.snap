@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withValidation should add controller prop 1`] = `
+<div>
+  <div>
+    [object Object]
+  </div>
+</div>
+`;

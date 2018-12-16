@@ -5,9 +5,9 @@
     valid: boolean;
     message?: any;
   }
-  type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
+  export type ValidateFunc = (value: any, values: any) => Promise<boolean | Validation> | boolean | Validation;
   type ValidationResult = Promise<Validation>
-  export type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.Component<infer TProps, any> ? TProps : TComponentOrTProps;
+  export type ExtractProps<TComponentOrTProps> = TComponentOrTProps extends React.ComponentType<infer TProps> ? TProps : TComponentOrTProps;
   export interface WrapperChildProps { 
     value: any;
     // name: string;

@@ -4,7 +4,24 @@ import typescript from 'rollup-plugin-typescript2';
 import autoExternal from 'rollup-plugin-auto-external';
 import { uglify } from 'rollup-plugin-uglify';
 
-export default {
+const plugins = [
+  resolve({jsnext: true}),
+  resolve({customResolveOptions: { moduleDirectory: 'node_modules'}}),
+  commonjs(),
+  autoExternal(),
+  typescript({
+    tsconfigOverride: {
+      compilerOptions: {
+        module: 'ESNext'
+      }
+    }
+  }),
+  // uglify()
+]
+
+const external = ['react', 'react-dom'];
+
+export default [{
   input: 'src/index.tsx',
   output: {
     file: 'lib/validation.js',
@@ -12,19 +29,16 @@ export default {
     name: 'validation',
     sourceMap: 'true'
   },
-  external: ['react', 'react-dom'],
-  plugins: [
-    resolve({jsnext: true}),
-    resolve({customResolveOptions: { moduleDirectory: 'node_modules'}}),
-    commonjs(),
-    autoExternal(),
-    typescript({
-      tsconfigOverride: {
-        compilerOptions: {
-          module: 'ESNext'
-        }
-      }
-    }),
-    // uglify()
-  ]
-}
+  external,
+  plugins
+}, {
+  input: 'src/tests.ts',
+  output: { 
+    file: 'lib/tests.js',
+    format: 'cjs',
+    name: 'tests',
+    sourceMap: 'true'
+  },
+  external,
+  plugins
+}]

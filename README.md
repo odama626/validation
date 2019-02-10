@@ -8,9 +8,9 @@ Upon invoking the validate function the error state is remembered for each inval
 
 Requires React ^16.4.2
 
-for version 2 see [version 2 docs](README.old.md)
+for old documentation see [version 2 docs](README.old.md)
 
-For basic ussage
+For basic usage
 
 ```jsx
 import withValidation, { Wrapper } from '@omarzion/validation';
@@ -27,6 +27,37 @@ const submit = async controller => {
     // getValues() returns an object with all your form inputs in key value form
     const formData = controller.getValues();
 
+    // do whatever with your clean form data here
+  }
+}
+
+// withValidation provides controller prop
+const ValidatedForm = ({ controller, Wrap, Long }) => (
+  <div>
+    <Wrap name='name' controller={controller} validate={v => v.length > 0}>
+      ({ onChange, value, error, message }) => (
+        <input
+          style={{ borderColor: error ? 'red' : 'initial' }}
+          onChange={onChange}
+          value={value}
+        />
+      )
+    </Wrap>
+    <button onClick={() => submit(controller)} />
+  </div>
+)
+
+export default withValidation()(ValidatedForm);
+```
+You can also map the controller (and optionably a validation function) and provide it to the withValidation function
+
+```jsx
+import withValidation, { Wrapper } from '@omarzion/validation';
+
+
+const submit = async controller => {
+  if (await controller.validate()) {
+    const formData = controller.getValues();
     // do whatever with your clean form data here
   }
 }
@@ -114,7 +145,8 @@ used to manually set an error on a field by name, good for a failed login
 
 ### .get(name)
 simply exists to accompany set
-returns { valid, value, message }
+
+returns `{ valid, value, message }`
 
 
 ### .clear()

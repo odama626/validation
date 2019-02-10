@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Provided Tests emailAddress 1`] = `
+Object {
+  "message": "not a valid email address",
+  "valid": false,
+}
+`;
+
+exports[`Provided Tests notEmpty 1`] = `
+Object {
+  "message": "required",
+  "valid": false,
+}
+`;
+
+exports[`Provided Tests phoneNumber 1`] = `
+Object {
+  "message": "not a valid phone number",
+  "valid": false,
+}
+`;

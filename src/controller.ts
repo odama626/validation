@@ -46,9 +46,13 @@ export default class Controller implements Core.FormController {
     this.provider = provider;
   }
 
-  attachComponent(name, component) {
+  attachComponent(name, component, defaultValue) {
     this.components[name] = component;
     component.Context = this.Context;
+
+    if (defaultValue) {
+      this.set(name, { value: defaultValue });
+    }
   }
 
   async validateByName(name, values) {
@@ -73,6 +77,13 @@ export default class Controller implements Core.FormController {
       valid: state.errors[name] ? state.errors[name].valid : true,
       message: state.errors[name] ? state.errors[name].message : undefined
     }
+  }
+
+  getErrors() {
+    const state = this.provider.state;
+    return Object.keys(state.errors)
+      .filter(key => !state.errors[key].valid)
+      .map(name => ({name, message: state.errors[name].message}))
   }
 
   clear() {

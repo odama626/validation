@@ -8,7 +8,7 @@ export default class Controller implements Core.FormController {
     provider: Core.Provider;
     constructor();
     attachContext(provider: any): void;
-    attachComponent(name: any, component: any): void;
+    attachComponent(name: any, component: any, defaultValue: any): void;
     validateByName(name: any, values: any): Promise<any>;
     set(name: any, opts: any): void;
     get(name: string): {
@@ -16,6 +16,10 @@ export default class Controller implements Core.FormController {
         valid: any;
         message: any;
     };
+    getErrors(): {
+        name: string;
+        message: any;
+    }[];
     clear(): void;
     /**
      * ```

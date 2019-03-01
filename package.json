@@ -1,6 +1,6 @@
 {
   "name": "@omarzion/validation",
-  "version": "2.2.1",
+  "version": "2.3.2",
   "description": "simple react validation library",
   "main": "lib/validation.js",
   "types": "lib/index.d.ts",

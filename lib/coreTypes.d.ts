@@ -11,7 +11,7 @@ export interface WrapperChildProps {
     onChange: (event: any) => any;
 }
 export interface FormController {
-    attachComponent: (name: any, conmponent: any) => void;
+    attachComponent: (name: any, conmponent: any, defaultValue?: any) => void;
     attachContext: (conmponent: any) => void;
     validate: () => ValidationResult;
     validateByName: (name: string, values: {

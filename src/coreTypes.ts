@@ -15,7 +15,7 @@
   }
 
   export interface FormController {
-    attachComponent: (name, conmponent) => void;
+    attachComponent: (name, conmponent, defaultValue?) => void;
     attachContext: (conmponent) => void;
     validate: () => ValidationResult;
     validateByName: (name: string, values: { [name: string]: any }) => ValidationResult;

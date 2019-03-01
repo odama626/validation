@@ -27,13 +27,14 @@ export default class Wrapper extends React.Component<Core.WrapperProps> implemen
   }
 
   componentWillMount() {
-    const { controller } = this.props;
+    const { controller, children, defaultValue, name } = this.props;
     this.validate = this.validate.bind(this);
-    controller && controller.attachComponent(this.props.name, this);
+    controller && controller.attachComponent(name, this, defaultValue);
 
-    if (!this.props.children || typeof this.props.children !== 'function') {
+    if (!children || typeof children !== 'function') {
       throw Error('children of Wrapper must be a function');
     }
+    
   }
 
   render() {
